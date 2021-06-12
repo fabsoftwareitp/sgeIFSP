@@ -16,17 +16,7 @@
                     <div class="col-md-12 p-5">
 
                             <h2 class="text-center">Submissão de trabalho para {{$Apelido}}</h2>
-                            <hr>
-
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif                            
+                            <hr>                            
 
                             <form method="post" action="{{ route('create_trabalho')}}" enctype="multipart/form-data">
 
@@ -34,34 +24,63 @@
                                 <input type="hidden" name="Apelido" value="{{$Apelido}}">
 
                                 <div class="form-group">
-
-                                    <label for="nome">Trabalho: </label>
-                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o título do seu trabalho">
+                                    <label for="nome">Título do trabalho: </label>
+                                    <input id="nome" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome" placeholder="Insira o título do seu trabalho">
+                                    @error('nome')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="autor">Autor: </label>
-                                    <input type="text" class="form-control" id="autor" name="autor" placeholder="Insira o nome do autor principal">
+                                    <input id="autor" type="text" class="form-control @error('autor') is-invalid @enderror" name="autor" placeholder="Insira o nome do autor principal">
+                                    @error('autor')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="coautores">Coautores: </label>
-                                    <input type="text" class="form-control" id="coautores" name="coautores" placeholder="Insira o nome dos coautores">
+                                    <input id="coautores" type="text" class="form-control @error('coautores') is-invalid @enderror" name="coautores" placeholder="Insira o nome dos coautores">
+                                    @error('coautores')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="trabalhoPdf">Projeto em arquivo em PDF</label>
-                                    <input type="file" class="form-control" id="trabalhoPdf" name="trabalhoPdf">
+                                    <label for="trabalhoPdf">Trabalho em arquivo PDF</label>
+                                    <input id="trabalhoPdf" type="file" class="form-control @error('trabalhoPdf') is-invalid @enderror" name="trabalhoPdf">
+                                    @error('trabalhoPdf')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="diarioPdf">Diário de bordo em arquivo PDF</label>
-                                    <input type="file" class="form-control" id="diarioPdf" name="diarioPdf">
+                                    <input id="diarioPdf" type="file" class="form-control @error('diarioPdf') is-invalid @enderror" name="diarioPdf">
+                                    @error('diarioPdf')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="linkVid">Link para vídeo</label>
-                                    <input type="url" class="form-control" id="linkVid" name="linkVid" placeholder="Link para seu vídeo no YouTube">
+                                    <input id="linkVid" type="url" class="form-control @error('linkVid') is-invalid @enderror" name="linkVid" placeholder="Link para seu vídeo no YouTube">
+                                    @error('linkVid')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>                        
 
                                 <button type="submit" class="btn btn-outline-primary btn-block">Enviar</button>

@@ -19,6 +19,8 @@ class TrabalhoController extends Controller{
 
         //auth()->user()->id 
         
+        $validated = $data->validated();
+                
         if ($data->hasFile('trabalhoPdf') && $data->file('trabalhoPdf')->isValid() 
             && $data->hasFile('diarioPdf') && $data->file('diarioPdf')->isValid()) {
 

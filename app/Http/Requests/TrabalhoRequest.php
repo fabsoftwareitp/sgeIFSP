@@ -24,12 +24,30 @@ class TrabalhoRequest extends FormRequest
     public function rules()
     {
         return [                      
-            'autor' => 'required',
+            'autor' => 'required|string',
             'coautores' => 'nullable',
-            'nome' => 'required',
-            'linkVid' => 'url|required',
-            'trabalhoPdf' => 'required',
-            'diarioPdf' => 'required'
+            'nome' => 'required|string',
+            'linkVid' => 'required|url',
+            'trabalhoPdf' => 'required|mimes:pdf',
+            'diarioPdf' => 'required|mimes:pdf'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'O :attribute deve ser informado',
+            'linkVid.url' => 'O link para o vídeo informado é inválido',
+            'trabalhoPdf.required' => 'A submissão do trabalho é obrigatória',
+            'diarioPdf.required' => 'A submissão do diário de bordo é obrigatória',
+            'mimes' => 'O arquivo dever estar em formato PDF',
+        ];
+    }
+    public function attributes()
+    {
+        return [
+            'nome' => 'título do projeto',
+            'linkVid' => 'link para o vídeo',
         ];
     }
 }
