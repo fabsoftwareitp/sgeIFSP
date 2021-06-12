@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\Storage;
 use App\TrabalhoModel;
 use App\EventoModel;
 use App\User;
+use App\Http\Requests\TrabalhoRequest;
 
 class TrabalhoController extends Controller{
 
-    public function createTrabalho(Request $data){
+    public function createTrabalho(TrabalhoRequest $data){
 
         $Apelido = $data['Apelido'];
         $eventos = EventoModel::where('Apelido', '=', $Apelido)->get()->first();
@@ -46,7 +47,7 @@ class TrabalhoController extends Controller{
             return redirect()->route('showEvent', [$Apelido]);
 
         }else{
-            print "deu errado";
+            return redirect()->route('showForm_create_trabalho')->withErrors();
         }
 
     }

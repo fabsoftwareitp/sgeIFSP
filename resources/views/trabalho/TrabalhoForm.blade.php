@@ -1,28 +1,78 @@
-<h1>Submissão de trabalho para {{$Apelido}}</h1>
+@extends('template.main')
+@section('color-bg')
+ background-image
+@endsection
 
-<form method="post" action="{{ route('create_trabalho')}}" enctype="multipart/form-data">
+@section('content')
+@section('navbar')
+	@include('components.navbar')
+@endsection
 
-    @csrf
-    <input type="hidden" name="Apelido" value="{{$Apelido}}">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card form-box">
+                <div class="card-body row p-0">
+                    <div class="col-md-12 p-5">
 
-    <label for="nome">nome trabalho: </label>
-    <input type="text" id="nome" name="nome" placeholder="nome do trabalho"><br><br>
+                            <h2 class="text-center">Submissão de trabalho para {{$Apelido}}</h2>
+                            <hr>
 
-    <label for="autor">Autor: </label>
-    <input type="text" id="autor" name="autor" placeholder="Nome do autor principal"><br><br>
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif                            
 
-    <label for="coautores">Coautores: </label>
-    <input type="text" id="coautores" name="coautores" placeholder="Nome dos coautores"><br><br>
-   
-    <label for="trabalhoPdf">Arquivo em PDF</label>
-    <input type="file" id="trabalhoPdf" name="trabalhoPdf"><br><br>
+                            <form method="post" action="{{ route('create_trabalho')}}" enctype="multipart/form-data">
 
-    <label for="diarioPdf">Diário de bordo em PDF</label>
-    <input type="file" id="diarioPdf" name="diarioPdf"><br><br>
+                                @csrf
+                                <input type="hidden" name="Apelido" value="{{$Apelido}}">
 
-    <label for="linkVid">Link para vídeo</label>
-    <input type="url" id="linkVid" name="linkVid" placeholder="Link para seu vídeo no YouTube"><br><br>
+                                <div class="form-group">
 
-    <button type="submit">Enviar</button>
+                                    <label for="nome">Trabalho: </label>
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o título do seu trabalho">
+                                </div>
 
-</form>
+                                <div class="form-group">
+                                    <label for="autor">Autor: </label>
+                                    <input type="text" class="form-control" id="autor" name="autor" placeholder="Insira o nome do autor principal">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="coautores">Coautores: </label>
+                                    <input type="text" class="form-control" id="coautores" name="coautores" placeholder="Insira o nome dos coautores">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="trabalhoPdf">Projeto em arquivo em PDF</label>
+                                    <input type="file" class="form-control" id="trabalhoPdf" name="trabalhoPdf">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="diarioPdf">Diário de bordo em arquivo PDF</label>
+                                    <input type="file" class="form-control" id="diarioPdf" name="diarioPdf">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="linkVid">Link para vídeo</label>
+                                    <input type="url" class="form-control" id="linkVid" name="linkVid" placeholder="Link para seu vídeo no YouTube">
+                                </div>                        
+
+                                <button type="submit" class="btn btn-outline-primary btn-block">Enviar</button>
+
+                            </form>
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <div class="float "><a href="{{route('welcome')}}" class="float"><i class=""></i></a></div>
+    </div>
+</div>
+
+@endsection
