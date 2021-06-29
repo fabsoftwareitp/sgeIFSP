@@ -28,3 +28,5 @@ Configurar o arquivo .env com os dados de conexão para seu banco, alterando usu
 Para subir o servidor com o apache em Windows pode-se utilizar o [Xampp](https://www.apachefriends.org/pt_br/index.html) na versão portable ou não e apenas colocar os arquivos da aplicação dentro da raiz do diretório e o acessar através da pasta `public`. 
 
 Também é válido considerar a configuração do apache para Laravel caso sejam enfrentados problemas na execução. [Link com mais explicações](https://phpraxis.wordpress.com/2016/08/02/steps-for-configuring-laravel-on-apache-http-server/).
+
+## Teste 123
